@@ -8,7 +8,7 @@ function App() {
 
   const onHandleSearch = async () => {
     let data = JSON.stringify({
-      q: imageSearch,
+      q: `supermarket ${imageSearch}`,
       num: 1,
     });
 
