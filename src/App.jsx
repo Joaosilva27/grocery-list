@@ -72,12 +72,16 @@ function App() {
     <div className='flex justify-center items-center m-10 flex-col'>
       <div className='flex mb-10'>
         <form className='flex'>
-          <input onChange={e => setImageSearch(e.target.value)} value={imageSearch} className='text-black rounded-full outline-none'></input>
+          <input
+            placeholder='Search groceries...'
+            onChange={e => setImageSearch(e.target.value)}
+            value={imageSearch}
+            className='text-black bg-white rounded-full outline-none placeholder:pl-4'
+          ></input>
           <button className='ml-4 mr-2' onClick={onHandleSearch}>
             Search
           </button>
         </form>
-
         <button onClick={onHandleClearList}>Clear List</button>
       </div>
       {imageResults.map((image, index) => (
