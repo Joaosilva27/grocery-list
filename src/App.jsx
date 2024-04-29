@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import MinusCartIcon from "./Icons/cart-minus.svg";
 
 function App() {
   const [imageSearch, setImageSearch] = useState();
@@ -38,15 +39,32 @@ function App() {
     }
   };
 
+  const onHandleRemoveItem = index => {
+    setImageSearchList(prevState => {
+      const newList = [...prevState];
+      newList.splice(index, 1);
+      return newList;
+    });
+
+    setImageResults(prevState => {
+      const newResults = [...prevState];
+      newResults.splice(index, 1);
+      return newResults;
+    });
+  };
+
   const onHandleClearList = () => {
     setImageSearchList([]);
     setImageResults([]);
   };
 
-  const GroceryCard = ({ item, image }) => (
+  const GroceryCard = ({ item, image, index }) => (
     <div className='flex justify-between items-center w-full mb-3'>
       <span className='ml-6'>{item}</span>
-      <img className='w-20 h-20 object-cover rounded-xl' src={image}></img>
+      <div className='flex'>
+        <img className='w-20 h-20 object-cover rounded-xl' src={image} alt=''></img>
+        <img className='w-8 ml-2 cursor-pointer' src={MinusCartIcon} alt='Remove' onClick={() => onHandleRemoveItem(index)} />
+      </div>
     </div>
   );
 
@@ -63,7 +81,7 @@ function App() {
         <button onClick={onHandleClearList}>Clear List</button>
       </div>
       {imageResults.map((image, index) => (
-        <GroceryCard item={imageSearchList[index]} image={image.imageUrl} key={index} />
+        <GroceryCard item={imageSearchList[index]} image={image.imageUrl} index={index} key={index} />
       ))}
     </div>
   );
