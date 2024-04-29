@@ -76,7 +76,7 @@ function App() {
             placeholder='Search groceries...'
             onChange={e => setImageSearch(e.target.value)}
             value={imageSearch}
-            className='text-black bg-white rounded-full outline-none placeholder:pl-4'
+            className='text-black bg-white rounded-full outline-none pl-6'
           ></input>
           <button className='ml-4 mr-2' onClick={onHandleSearch}>
             Search
