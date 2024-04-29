@@ -6,7 +6,9 @@ function App() {
   const [imageSearchList, setImageSearchList] = useState([]);
   const [imageResults, setImageResults] = useState([]);
 
-  const onHandleSearch = async () => {
+  const onHandleSearch = async e => {
+    e.preventDefault();
+
     let data = JSON.stringify({
       q: `supermarket ${imageSearch}`,
       num: 1,
@@ -29,9 +31,16 @@ function App() {
       setImageSearchList(prevState => [imageSearch, ...prevState]);
 
       setImageResults(prevState => [...response.data.images, ...prevState]);
+
+      setImageSearch("");
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const onHandleClearList = () => {
+    setImageSearchList([]);
+    setImageResults([]);
   };
 
   const GroceryCard = ({ item, image }) => (
@@ -44,10 +53,14 @@ function App() {
   return (
     <div className='flex justify-center items-center m-10 flex-col'>
       <div className='flex mb-10'>
-        <input onChange={e => setImageSearch(e.target.value)} value={imageSearch} className='text-black'></input>
-        <button className='ml-4' onClick={onHandleSearch}>
-          search
-        </button>
+        <form className='flex'>
+          <input onChange={e => setImageSearch(e.target.value)} value={imageSearch} className='text-black'></input>
+          <button className='ml-4 mr-2' onClick={onHandleSearch}>
+            search
+          </button>
+        </form>
+
+        <button onClick={onHandleClearList}>clear list</button>
       </div>
       {imageResults.map((image, index) => (
         <GroceryCard item={imageSearchList[index]} image={image.imageUrl} key={index} />
