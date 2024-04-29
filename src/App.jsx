@@ -35,16 +35,20 @@ function App() {
   };
 
   const GroceryCard = ({ item, image }) => (
-    <div className='flex '>
+    <div className='flex justify-between items-center w-full mb-3'>
       <span className='ml-6'>{item}</span>
-      <img className='w-20' src={image}></img>
+      <img className='w-20 h-20 object-cover' src={image}></img>
     </div>
   );
 
   return (
     <div className='flex justify-center items-center m-10 flex-col'>
-      <input onChange={e => setImageSearch(e.target.value)} value={imageSearch} className='text-black'></input>
-      <button onClick={onHandleSearch}>search</button>
+      <div className='flex mb-10'>
+        <input onChange={e => setImageSearch(e.target.value)} value={imageSearch} className='text-black'></input>
+        <button className='ml-4' onClick={onHandleSearch}>
+          search
+        </button>
+      </div>
       {imageResults.map((image, index) => (
         <GroceryCard item={imageSearchList[index]} image={image.imageUrl} key={index} />
       ))}
