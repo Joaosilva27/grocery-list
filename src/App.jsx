@@ -94,11 +94,11 @@ function App() {
               value={imageSearch}
               className='text-black bg-white rounded-full outline-none pl-6'
             ></input>
-            <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleSearch}>
+            <button className='bg-green-500 ml-2 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleSearch}>
               Add
             </button>
           </form>
-          <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleClearList}>
+          <button className='bg-green-500 ml-2 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleClearList}>
             Clear List
           </button>
         </div>
