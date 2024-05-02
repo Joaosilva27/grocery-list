@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import MinusCartIcon from "./Icons/cart-minus.svg";
+import MinusCartIcon from "./Icons/cart-minus.png";
 
 function App() {
   const [imageSearch, setImageSearch] = useState("");
@@ -70,10 +70,10 @@ function App() {
 
   const GroceryCard = ({ item, image, index }) => (
     <div className='flex justify-between items-center w-full mb-3'>
-      <span className='ml-6'>{item}</span>
-      <div className='flex'>
+      <span className='ml-6 font-semibold'>{item}</span>
+      <div className='flex items-center'>
         <img className='w-20 h-20 object-cover rounded-xl' src={image} alt=''></img>
-        <img className='w-8 ml-2 cursor-pointer' src={MinusCartIcon} alt='Remove' onClick={() => onHandleRemoveItem(index)} />
+        <img className='w-8 h-8 ml-2 cursor-pointer' src={MinusCartIcon} alt='Remove' onClick={() => onHandleRemoveItem(index)} />
       </div>
     </div>
   );
@@ -84,26 +84,28 @@ function App() {
   }, [imageSearchList, imageResults]);
 
   return (
-    <div className='flex justify-center items-center m-10 flex-col'>
-      <div className='flex mb-10'>
-        <form className='flex'>
-          <input
-            placeholder='Add groceries...'
-            onChange={e => setImageSearch(e.target.value)}
-            value={imageSearch}
-            className='text-black bg-white rounded-full outline-none pl-6'
-          ></input>
-          <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleSearch}>
-            Add
+    <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center m-10 flex-col lg:w-3/12'>
+        <div className='flex mb-10'>
+          <form className='flex'>
+            <input
+              placeholder='Add groceries...'
+              onChange={e => setImageSearch(e.target.value)}
+              value={imageSearch}
+              className='text-black bg-white rounded-full outline-none pl-6'
+            ></input>
+            <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleSearch}>
+              Add
+            </button>
+          </form>
+          <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleClearList}>
+            Clear List
           </button>
-        </form>
-        <button className='bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm' onClick={onHandleClearList}>
-          Clear List
-        </button>
+        </div>
+        {imageResults.map((image, index) => (
+          <GroceryCard item={imageSearchList[index]} image={image.imageUrl} index={index} key={index} />
+        ))}
       </div>
-      {imageResults.map((image, index) => (
-        <GroceryCard item={imageSearchList[index]} image={image.imageUrl} index={index} key={index} />
-      ))}
     </div>
   );
 }
