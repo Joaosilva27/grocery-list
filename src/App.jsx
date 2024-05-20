@@ -18,7 +18,7 @@ function App() {
 
     if (imageSearch) {
       let data = JSON.stringify({
-        q: `supermarket ${imageSearch}`,
+        q: `supermarket packaging clear photo of ${imageSearch} on a plain background`,
         num: 1,
       });
 
