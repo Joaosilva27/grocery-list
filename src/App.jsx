@@ -34,11 +34,14 @@ function App() {
 
       try {
         const response = await axios(config);
-        console.log(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data)); // Log the response to check the structure
+
+        // Assuming response.data.images is an array, take only the first image
+        const firstImage = response.data.images[0];
 
         setImageSearchList(prevState => [imageSearch[0].toUpperCase() + imageSearch.substring(1), ...prevState]);
 
-        setImageResults(prevState => [...response.data.images, ...prevState]);
+        setImageResults(prevState => [firstImage, ...prevState]);
 
         setImageSearch("");
       } catch (error) {
