@@ -1,6 +1,6 @@
 # Grocery List App
 
-Grocery list app built using React JS, Firebase and Tailwind.
+Grocery list app built using React JS and Tailwind.
 
 Visit it here: https://grocerylist27.netlify.app/
 
