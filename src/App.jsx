@@ -26,7 +26,7 @@ function App() {
         method: "post",
         url: "https://google.serper.dev/images",
         headers: {
-          "X-API-KEY": "1f75c2b111ad0bd95a563938e5cb0d1cdb8add15",
+          "X-API-KEY": import.meta.env.VITE_SERPER_API_KEY,
           "Content-Type": "application/json",
         },
         data: data,
@@ -36,7 +36,7 @@ function App() {
         const response = await axios(config);
         console.log(JSON.stringify(response.data)); // Log the response to check the structure
 
-        // Assuming response.data.images is an array, take only the first image
+        // take only the first google image result
         const firstImage = response.data.images[0];
 
         setImageSearchList(prevState => [imageSearch[0].toUpperCase() + imageSearch.substring(1), ...prevState]);
